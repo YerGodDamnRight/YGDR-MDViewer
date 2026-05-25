@@ -1,13 +1,16 @@
 {
-    "name": "VRChatPackageTemplate.Editor",
+    "name": "com.ygdr.mdv.Editor",
+    "rootNamespace": "ygdr",
     "references": [],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Markdig.dll"
+    ],
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
