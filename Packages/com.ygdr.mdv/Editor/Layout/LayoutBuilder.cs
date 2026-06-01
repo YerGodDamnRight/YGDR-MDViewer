@@ -95,6 +95,7 @@ namespace YGDR.MDV
 
             content.URL            = url;
             content.Alt            = alt;
+            content.Tooltip        = title;
             content.OverrideWidth  = overrideWidth;
             content.OverrideHeight = overrideHeight;
 

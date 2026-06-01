@@ -22,3 +22,9 @@ Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is available in the same folder
 https://scripts.sil.org/OFL
+
+## Unity Markdown Viewer
+
+* gwaredd
+* https://github.com/gwaredd/UnityMarkdownViewer
+* Liscense MIT

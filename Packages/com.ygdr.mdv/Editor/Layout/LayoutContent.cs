@@ -81,6 +81,7 @@ namespace YGDR.MDV
     {
         public string URL;
         public string Alt;
+        public string Tooltip;
         public float  OverrideWidth;
         public float  OverrideHeight;
 
@@ -106,6 +107,9 @@ namespace YGDR.MDV
                             context.SelectPage( Link );
                     }
                 }
+
+                if( !string.IsNullOrEmpty( Tooltip ) )
+                    GUI.Label( Location, new GUIContent( string.Empty, Tooltip ), GUIStyle.none );
             }
             else
             {

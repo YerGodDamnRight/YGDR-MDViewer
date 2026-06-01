@@ -62,3 +62,8 @@ crashlytics-build.properties
 Assets/PackageMakerWindowData.asset*
 .idea
 .vscode
+
+#tool graphify and notes
+graphify-out/
+mdv-notes/
+.graphifyignore

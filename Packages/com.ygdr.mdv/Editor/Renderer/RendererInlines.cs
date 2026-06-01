@@ -150,6 +150,21 @@ namespace YGDR.MDV
 
             if( string.IsNullOrEmpty( title ) ) return;
 
+            // Verbose format: width=300 height=200 alt=tooltip text
+            var wMatch = Regex.Match( title, @"\bwidth=(\d+)" );
+            var hMatch = Regex.Match( title, @"\bheight=(\d+)" );
+
+            if( wMatch.Success || hMatch.Success )
+            {
+                if( wMatch.Success ) width  = float.Parse( wMatch.Groups[ 1 ].Value );
+                if( hMatch.Success ) height = float.Parse( hMatch.Groups[ 1 ].Value );
+
+                var altMatch = Regex.Match( title, @"\balt=(.+)$" );
+                cleanTitle = altMatch.Success ? altMatch.Groups[ 1 ].Value.Trim() : string.Empty;
+                return;
+            }
+
+            // Legacy format: =WxH
             var match = Regex.Match( title, @"\s*=(\d+)(?:x(\d+))?\s*$" );
             if( !match.Success ) return;
 

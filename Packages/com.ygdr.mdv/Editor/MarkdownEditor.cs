@@ -84,7 +84,7 @@ namespace YGDR.MDV
                     DrawRawEditor();
                 else
                     mViewer.Draw();
-                if( !mViewer.IsRaw )
+                if( mViewer != null && !mViewer.IsRaw )
                     ApplyPendingScroll();
             }
             else

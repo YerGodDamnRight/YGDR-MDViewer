@@ -25,7 +25,12 @@ namespace YGDR.MDV
 
         void OnGUI()
         {
+            EditorGUILayout.BeginHorizontal();
             GUILayout.Label( "MDViewer.Open() Generator", EditorStyles.boldLabel );
+            GUILayout.FlexibleSpace();
+            if( GUILayout.Button( "Cheat Sheet", GUILayout.Width( 90 ) ) )
+                MDViewer.Open( "Packages/com.ygdr.mdv/MDV Cheat Sheet.md", title: "MDV Cheat Sheet", editable: false );
+            EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space();
 
             EditorGUI.BeginChangeCheck();
