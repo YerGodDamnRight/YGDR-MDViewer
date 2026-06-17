@@ -1,0 +1,16 @@
+{
+  "name": "com.ygdr.mdv",
+  "displayName": "YGDR Markdown Viewer",
+  "version": "1.2.0",
+  "description": "Unity in Editor markdown renderer and editor",
+  "gitDependencies": {},
+  "vpmDependencies": {},
+  "author": {
+    "name": "YerGodDamnRight",
+    "email": "ygdrvrc@gmail.comn",
+    "url": ""
+  },
+  "legacyFolders": {},
+  "legacyFiles": {},
+  "localPath": ""
+}
