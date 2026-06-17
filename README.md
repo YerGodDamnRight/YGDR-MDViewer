@@ -158,7 +158,7 @@ A helper window for building `MDViewer.Open()` calls without writing code:
 
 ## 3rd Party Credits
 
-[Third Party Notices](com.ygdr.mdv/Third%20Party%20Notices.md)
+[Third Party Notices](packages/com.ygdr.mdv/Third%20Party%20Notices.md)
 
 ---
 
