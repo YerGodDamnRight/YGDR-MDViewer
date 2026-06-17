@@ -1,76 +1,165 @@
-# VPM Package Template
 
-Starter for making Packages, including automation for building and publishing them.
+<h1 style="text-align: center;">YGDR Markdown Viewer</h1>
 
-Once you're all set up, you'll be able to push changes to this repository and have .zip and .unitypackage versions automatically generated, and a listing made which works in the VPM for delivering updates for this package. If you want to make a listing with a variety of packages, check out our [template-package-listing](https://github.com/vrchat-community/template-package-listing) repo.
+<p align="center"><strong>Rendered markdown · Inline editing · Search · GIF images · Syntax highlighting · Programmatic API</strong></p>
 
-## ▶ Getting Started
+<p align="center">
+  <a href="https://unity.com"><img src="https://img.shields.io/badge/Unity-2022.3_LTS-black?logo=unity" alt="Unity"></a>
+  <a href="LICENSE.md"><img src="https://img.shields.io/badge/License-GPLv3-green" alt="License"></a>
+  <a href="https://claude.ai"><img src="https://img.shields.io/badge/Built_with-Claude-blueviolet?logo=anthropic" alt="Built with Claude"></a>
+</p>
 
-* Press [![Use This Template](https://user-images.githubusercontent.com/737888/185467681-e5fdb099-d99f-454b-8d9e-0760e5a6e588.png)](https://github.com/vrchat-community/template-package/generate)
-to start a new GitHub project based on this template.
-  * Choose a fitting repository name and description.
-  * Set the visibility to 'Public'. You can also choose 'Private' and change it later.
-  * You don't need to select 'Include all branches.'
-* Clone this repository locally using Git.
-  * If you're unfamiliar with Git and GitHub, [visit GitHub's documentation](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources) to learn more.
-* Add the folder to Unity Hub and open it as a Unity Project.
-* After opening the project, wait while the VPM resolver is downloaded and added to your project.
-  * This gives you access to the VPM Package Maker and Package Resolver tools.
+<p align="center">
+  <a href="#installation">Install</a> ·
+  <a href="#features">Features</a> ·
+  <a href="#usage">Usage</a> ·
+  <a href="#api">API</a> ·
+  <a href="https://github.com/YerGodDamnRight/YGDR-MDViewer/releases/latest">Releases</a> ·
+  <a href="LICENSE.md">License</a>
+</p>
 
-## 🚇 Migrating Assets Package
-Full details at [Converting Assets to a VPM Package](https://vcc.docs.vrchat.com/guides/convert-unitypackage)
+---
 
-## ✏️ Working on Your Package
+A Unity Editor extension that renders Markdown files as rich formatted documents — directly in the Editor. Supports inline editing, search, images (including animated GIFs), syntax-highlighted code blocks, and a full programmatic API for opening docs from your own tools.
 
-* Delete the "Packages/com.vrchat.demo-template" directory or reuse it for your own package.
-  * If you reuse the package, don't forget to rename it and add generated meta files to your repository!
-* Update the `.gitignore` file in the "Packages" directory to include your package.
-  * For example, change `!com.vrchat.demo-template` to `!com.username.package-name`.
-  * `.gitignore` files normally *exclude* the contents of your "Packages" directory. This `.gitignore` in this template show how to *include* the demo package. You can easily change this out for your own package name.
-* Open the Unity project and work on your package's files in your favorite code editor.
-* When you're ready, commit and push your changes.
-* Once you've set up the automation as described below, you can easily publish new versions.
+---
 
-## 🤖 Setting up the Automation
+## Features
 
-Create a repository variable with the name and value described below.
-For details on how to create repository variables, see [Creating Configuration Variables for a Repository](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository).
-Make sure you are creating a **repository variable**, and not a **repository secret**.
+<details>
+<summary><strong>Markdown Rendering</strong></summary>
 
-* `PACKAGE_NAME`: the name of your package, like `com.vrchat.demo-template`.
+- Headings H1–H6
+- **Bold**, *italic*, ***bold italic***, ~~strikethrough~~, `inline code`
+- Blockquotes (nested) and GitHub Alerts (`NOTE` `TIP` `IMPORTANT` `WARNING` `CAUTION`)
+- Ordered, unordered, and mixed nested lists
+- Task lists — `[x]` checked · `[-]` blocked · `[ ]` open — inline or in lists
+- Tables with left / center / right column alignment
+- Horizontal rules
+- Collapsible `<details>` / `<summary>` blocks
+- `<kbd>` keyboard shortcut rendering
+- Links — external URLs, same-page anchors, relative file links, auto-links, hover tooltips
 
-Finally, go to the "Settings" page for your repo, then choose "Pages", and look for the heading "Build and deployment". Change the "Source" dropdown from "Deploy from a branch" to "GitHub Actions".
+</details>
 
-That's it!
-Some other notes:
-* We highly recommend you keep the existing folder structure of this template.
-  * The root of the project should be a Unity project.
-  * Your packages should be in the "Packages" directory.
-  * If you deviate from this folder structure, you'll need to update the paths that assume your package is in the "Packages" directory on lines 24, 38, 41 and 57.
-* If you want to store and generate your web files in a folder other than "Website" in the root, you can change the `listPublicDirectory` item [here in build-listing.yml](.github/workflows/build-listing.yml#L17).
+<details>
+<summary><strong>Images & GIFs</strong></summary>
 
-## 🎉 Publishing a Release
+- Local paths (relative to the `.md` file) and remote URLs
+- Animated GIF playback in-Editor
+- Resize via title string: `"width=300 height=200"`
+- Hover tooltip via `alt=hover text here`
+- Supported formats: `png` `jpg` `gif` `bmp` `tga` `tiff` `webp` `psd`
+- Paths with spaces wrapped in `<angle brackets>`
 
-You can make a release by running the [Build Release](.github/workflows/release.yml) action. The version specified in your `package.json` file will be used to define the version of the release.
+</details>
 
-## 📃 Rebuilding the Listing
+<details>
+<summary><strong>Syntax Highlighting</strong></summary>
 
-Whenever you make a change to a release - manually publishing it, or manually creating, editing or deleting a release, the [Build Repo Listing](.github/workflows/build-listing.yml) action will make a new index of all the releases available, and publish them as a website hosted fore free on [GitHub Pages](https://pages.github.com/). This listing can be used by the VPM to keep your package up to date, and the generated index page can serve as a simple landing page with info for your package. The URL for your package will be in the format `https://username.github.io/repo-name`.
+Fenced code blocks highlight automatically when a language is specified:
 
-## 🏠 Customizing the Landing Page (Optional)
+- `csharp` / `cs`
+- `json`
 
-The action which rebuilds the listing also publishes a landing page. The source for this page is in `Website/index.html`. The automation system uses [Scriban](https://github.com/scriban/scriban) to fill in the objects like `{{ this }}` with information from the latest release's manifest, so it will stay up-to-date with the name, id and description that you provide there. You are welcome to modify this page however you want - just use the existing `{{ template.objects }}` to fill in that info wherever you like. The entire contents of your "Website" folder are published to your GitHub Page each time.
+</details>
 
-## 💻 Technical Stuff
+<details>
+<summary><strong>Inline Raw Editor</strong></summary>
 
-You are welcome to make your own changes to the automation process to make it fit your needs, and you can create Pull Requests if you have some changes you think we should adopt. Here's some more info on the included automation:
+Toggle to raw markdown source from any rendered view. Large files are paginated in chunks — use the Prev / Next toolbar to navigate. **Ctrl+S** saves to disk without leaving the window.
 
-### Build Release Action
-[release.yml](/.github/workflows/release.yml)
+</details>
 
-This is a composite action combining a variety of existing GitHub Actions and some shell commands to create both a .zip of your Package and a .unitypackage. It creates a release which is named for the `version` in the `package.json` file found in your target Package, and publishes the zip, the unitypackage and the package.json file to this release.
+<details>
+<summary><strong>Search</strong></summary>
 
-### Build Repo Listing
-[build-listing.yml](.github/workflows/build-listing.yml)
+**Ctrl+F** opens the search bar. Results highlight in-document with match count and Prev / Next navigation. **Esc** closes.
 
-This is a composite action which builds a vpm-compatible [Repo Listing](https://vcc.docs.vrchat.com/vpm/repos) based on the releases you've created. In order to find all your releases and combine them into a listing, it checks out [another repository](https://github.com/vrchat-community/package-list-action) which has a [Nuke](https://nuke.build/) project which includes the VPM core lib to have access to its types and methods. This project will be expanded to include more functionality in the future - for now, the action just calls its `BuildRepoListing` target.
+</details>
+
+<details>
+<summary><strong>Navigation</strong></summary>
+
+- Anchor links (`#section-heading`) smooth-scroll to the target heading
+- Relative file links open the linked `.md` in the same window
+
+</details>
+
+<details>
+<summary><strong>Dark & Light Skin</strong></summary>
+
+Auto-matches Unity's editor theme. Override any time in **Edit → Preferences → YGDR MDV**.
+
+</details>
+
+---
+
+## Installation
+
+1. Import via the [VPM repo](https://yergoddamnright.github.io/YGDR-VPM-Listing/) **or** download the latest `.unitypackage` from the [releases page](https://github.com/YerGodDamnRight/YGDR-MDViewer/releases/latest) and import into your project
+
+**Requirements:**
+- Unity 2022.3 LTS
+
+---
+
+## Usage
+
+Select any `.md` file in the Project window — it renders automatically in the Unity Inspector. No setup required.
+
+To edit, click the **Edit** button in the viewer toolbar to toggle raw mode. **Ctrl+S** saves.
+
+---
+
+## API
+
+Open a Markdown file from code — useful for embedding help docs in your own Editor tools:
+
+```csharp
+using YGDR.MDV;
+
+// Minimal — path or GUID
+MDViewer.Open("Assets/Docs/README.md");
+MDViewer.Open("a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4"); // GUID — stable across file moves
+
+// Full options
+MDViewer.Open(
+    "Assets/Docs/README.md",
+    anchor:   "section-heading",  // scroll to anchor on open
+    title:    "My Docs",          // window title override
+    lineMin:  10,                 // first line to display
+    lineMax:  50,                 // last line to display
+    editable: false               // disable editing (default: true)
+);
+```
+
+---
+
+## MDV Generator Window
+
+Open via **YGDR → MDV Generator** in the Unity menu bar.
+
+A helper window for building `MDViewer.Open()` calls without writing code:
+
+- Drag any `.md` asset into the field to auto-populate its path and GUID
+- Copy the GUID directly for use in stable, move-safe references
+- Set anchor, title, line range, and editable flag interactively
+- Preview and copy the generated call with one click
+- **Cheat Sheet** button opens the full MDV syntax reference
+
+---
+
+## License
+
+[GNU General Public License v3.0](LICENSE.md)
+
+---
+
+## 3rd Party Credits
+
+[Third Party Notices](com.ygdr.mdv/Third%20Party%20Notices.md)
+
+---
+
+<p align="center"><sub>by <a href="https://github.com/YerGodDamnRight">YerGodDamnRight</a> · Developed with AI assistance (<a href="https://claude.ai">Claude</a> / Anthropic)</sub></p>
