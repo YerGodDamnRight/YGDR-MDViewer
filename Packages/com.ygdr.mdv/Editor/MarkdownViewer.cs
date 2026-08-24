@@ -177,21 +177,32 @@ namespace YGDR.MDV
 
         public void Draw()
         {
-            GUI.skin    = mSkin;
-            GUI.enabled = true;
+            var previousSkin    = GUI.skin;
+            var previousEnabled = GUI.enabled;
 
-            var contentWidth = mViewWidthProvider() - mSkin.verticalScrollbar.fixedWidth - 2.0f * Margin.x;
-
-            if( mRaw )
+            try
             {
-                // UITK panel covers full window — IMGUI draws background only to prevent artifacts
-                ClearBackground( ViewportHeight );
-                return;
-            }
+                GUI.skin    = mSkin;
+                GUI.enabled = true;
 
-            ClearBackground( mLayout.Height );
-            DrawMarkdown( contentWidth );
-            DrawToolbar( contentWidth );
+                var contentWidth = mViewWidthProvider() - mSkin.verticalScrollbar.fixedWidth - 2.0f * Margin.x;
+
+                if( mRaw )
+                {
+                    // UITK panel covers full window — IMGUI draws background only to prevent artifacts
+                    ClearBackground( ViewportHeight );
+                    return;
+                }
+
+                ClearBackground( mLayout.Height );
+                DrawMarkdown( contentWidth );
+                DrawToolbar( contentWidth );
+            }
+            finally
+            {
+                GUI.skin    = previousSkin;
+                GUI.enabled = previousEnabled;
+            }
         }
 
         void DrawToolbar( float contentWidth )
